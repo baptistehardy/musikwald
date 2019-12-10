@@ -1,0 +1,13 @@
+image: composer:latest
+
+before_script:
+  - git clone https://gitlab.com/baptistehardy/musikwald.git && cd musikwald
+  - composer install
+
+coverage:
+  script:
+    - php bin/phpunit --coverage-text
+
+test:
+  script:
+    - php bin/phpunit --testdox
