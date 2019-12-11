@@ -5,14 +5,18 @@ before_script:
   - git clone https://gitlab.com/baptistehardy/musikwald.git && cd musikwald
   - composer install
 
+stages:
+  - test
+  - coverage
+
 coverage:
-  stage: test
+  stage: coverage
   only:
     - master
   script:
     - php bin/phpunit --coverage-text --colors=never
 
-tests:
+test:
   stage: test
   only:
     - master
