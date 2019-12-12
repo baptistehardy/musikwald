@@ -17,5 +17,9 @@
         "dev": "encore dev",
         "watch": "encore dev --watch",
         "build": "encore production --progress"
+    },
+    "dependencies": {
+        "@material-ui/core": "^4.7.2",
+        "@material-ui/icons": "^4.5.1"
     }
 }
