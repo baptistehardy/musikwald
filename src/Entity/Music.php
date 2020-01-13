@@ -45,6 +45,11 @@ class Music
      */
     private $album;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="App\Entity\Label", inversedBy="musics")
+     */
+    private $label;
+
     public function __construct()
     {
         $this->Artists = new ArrayCollection();
@@ -140,6 +145,18 @@ class Music
     public function setAlbum(?Album $album): self
     {
         $this->album = $album;
+
+        return $this;
+    }
+
+    public function getLabel(): ?Label
+    {
+        return $this->label;
+    }
+
+    public function setLabel(?Label $label): self
+    {
+        $this->label = $label;
 
         return $this;
     }
