@@ -1,4 +1,6 @@
 import React from 'react';
+import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
+
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
 import AppBar from '@material-ui/core/AppBar';
@@ -15,13 +17,14 @@ import AlbumOutlinedIcon from '@material-ui/icons/AlbumOutlined';
 import BookmarksOutlinedIcon from '@material-ui/icons/BookmarksOutlined';
 import BusinessOutlinedIcon from '@material-ui/icons/BusinessOutlined';
 import MusicNoteOutlinedIcon from '@material-ui/icons/MusicNoteOutlined';
+
 import {Home} from "./home";
 import {MusicList} from "./musicList";
 import {GenreList} from "./genreList";
 import {AlbumList} from "./albumList";
 import {ArtistList} from "./artistList";
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
 import {LabelList} from "./labelList";
+import NotFound from "./404";
 
 const drawerWidth = 240;
 
@@ -104,12 +107,15 @@ export default function Navbar() {
                 </Drawer>
                 <main className={styles.content}>
                     <div className={styles.toolbar} />
-                    <Route exact path="/" component={Home} />
-                    <Route path="/morceau" component={MusicList} />
-                    <Route path="/artiste" component={ArtistList} />
-                    <Route path="/album" component={AlbumList} />
-                    <Route path="/genre" component={GenreList} />
-                    <Route path="/label" component={LabelList} />
+                    <Switch>
+                        <Route exact path="/" component={Home} />
+                        <Route path="/morceau" component={MusicList} />
+                        <Route path="/artiste" component={ArtistList} />
+                        <Route path="/album" component={AlbumList} />
+                        <Route path="/genre" component={GenreList} />
+                        <Route path="/label" component={LabelList} />
+                        <Route component={NotFound} />
+                    </Switch>
                 </main>
             </div>
         </Router>
