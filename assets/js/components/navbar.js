@@ -15,6 +15,13 @@ import AlbumOutlinedIcon from '@material-ui/icons/AlbumOutlined';
 import BookmarksOutlinedIcon from '@material-ui/icons/BookmarksOutlined';
 import BusinessOutlinedIcon from '@material-ui/icons/BusinessOutlined';
 import MusicNoteOutlinedIcon from '@material-ui/icons/MusicNoteOutlined';
+import {Home} from "./home";
+import {MusicList} from "./musicList";
+import {GenreList} from "./genreList";
+import {AlbumList} from "./albumList";
+import {ArtistList} from "./artistList";
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom'
+import {LabelList} from "./labelList";
 
 const drawerWidth = 240;
 
@@ -44,71 +51,67 @@ export default function Navbar() {
     const styles = useStyles();
 
     return (
-        <div className={styles.root}>
-            <CssBaseline />
-            <AppBar position="fixed" className={styles.appBar}>
-                <Toolbar>
-                    <Typography variant="h6" noWrap>
-                        musikwald
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-            <Drawer
-                className={styles.drawer}
-                variant="permanent"
-                classes={{
-                    paper: styles.drawerPaper,
-                }}
-            >
-                <div className={styles.toolbar} />
-                <List>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <MusicNoteOutlinedIcon/>
-                        </ListItemIcon>
-                        <ListItemText primary="Morceaux" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <FaceOutlinedIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Artistes" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <AlbumOutlinedIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Albums" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <BookmarksOutlinedIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Genres" />
-                    </ListItem>
-                    <ListItem button>
-                        <ListItemIcon>
-                            <BusinessOutlinedIcon />
-                        </ListItemIcon>
-                        <ListItemText primary="Labels" />
-                    </ListItem>
-                </List>
-            </Drawer>
-            <main className={styles.content}>
-                <div className={styles.toolbar} />
-                <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt
-                    ut labore et dolore magna aliqua. Rhoncus dolor purus non enim praesent elementum
-                    facilisis leo vel. Risus at ultrices mi tempus imperdiet. Semper risus in hendrerit
-                    gravida rutrum quisque non tellus. Convallis convallis tellus id interdum velit laoreet id
-                    donec ultrices. Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra nibh cras.
-                    Metus vulputate eu scelerisque felis imperdiet proin fermentum leo. Mauris commodo quis
-                    imperdiet massa tincidunt. Cras tincidunt lobortis feugiat vivamus at augue. At augue eget
-                    arcu dictum varius duis at consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem
-                    donec massa sapien faucibus et molestie ac.
-                </Typography>
-            </main>
-        </div>
+        <Router>
+            <div className={styles.root}>
+                <CssBaseline />
+                <AppBar position="fixed" className={styles.appBar} component={Link} to="/">
+                    <Toolbar>
+                        <Typography variant="h6" noWrap>
+                            musikwald
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
+                <Drawer
+                    className={styles.drawer}
+                    variant="permanent"
+                    classes={{
+                        paper: styles.drawerPaper,
+                    }}
+                >
+                    <div className={styles.toolbar} />
+                    <List>
+                        <ListItem button component={Link} to="/morceau">
+                            <ListItemIcon>
+                                <MusicNoteOutlinedIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary="Morceaux"/>
+                        </ListItem>
+                        <ListItem button component={Link} to="/artiste">
+                            <ListItemIcon>
+                                <FaceOutlinedIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Artistes" />
+                        </ListItem>
+                        <ListItem button component={Link} to="/album">
+                            <ListItemIcon>
+                                <AlbumOutlinedIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Albums" />
+                        </ListItem>
+                        <ListItem button component={Link} to="/genre">
+                            <ListItemIcon>
+                                <BookmarksOutlinedIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Genres" />
+                        </ListItem>
+                        <ListItem button component={Link} to="/label">
+                            <ListItemIcon>
+                                <BusinessOutlinedIcon />
+                            </ListItemIcon>
+                            <ListItemText primary="Labels" />
+                        </ListItem>
+                    </List>
+                </Drawer>
+                <main className={styles.content}>
+                    <div className={styles.toolbar} />
+                    <Route exact path="/" component={Home} />
+                    <Route path="/morceau" component={MusicList} />
+                    <Route path="/artiste" component={ArtistList} />
+                    <Route path="/album" component={AlbumList} />
+                    <Route path="/genre" component={GenreList} />
+                    <Route path="/label" component={LabelList} />
+                </main>
+            </div>
+        </Router>
     );
 }
