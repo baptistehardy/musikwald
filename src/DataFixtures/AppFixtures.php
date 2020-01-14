@@ -2,6 +2,7 @@
 
 namespace App\DataFixtures;
 
+
 use App\Entity\Album;
 use App\Entity\Artist;
 use App\Entity\Genre;
@@ -235,7 +236,6 @@ class AppFixtures extends Fixture
         
         $disambiguation->setReleaseYear(2019);
         $manager->persist($disambiguation);
-
         $manager->flush();
     }
 }
