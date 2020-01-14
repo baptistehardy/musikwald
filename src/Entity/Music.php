@@ -36,7 +36,7 @@ class Music
     private $artists;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\genre", inversedBy="musics")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Genre", inversedBy="musics")
      */
     private $genres;
 
@@ -52,7 +52,7 @@ class Music
 
     public function __construct()
     {
-        $this->Artists = new ArrayCollection();
+        $this->artists = new ArrayCollection();
         $this->genres = new ArrayCollection();
     }
 
@@ -112,14 +112,14 @@ class Music
     }
 
     /**
-     * @return Collection|genre[]
+     * @return Collection|Genre[]
      */
     public function getGenres(): Collection
     {
         return $this->genres;
     }
 
-    public function addGenre(genre $genre): self
+    public function addGenre(Genre $genre): self
     {
         if (!$this->genres->contains($genre)) {
             $this->genres[] = $genre;
@@ -128,7 +128,7 @@ class Music
         return $this;
     }
 
-    public function removeGenre(genre $genre): self
+    public function removeGenre(Genre $genre): self
     {
         if ($this->genres->contains($genre)) {
             $this->genres->removeElement($genre);
