@@ -7,6 +7,31 @@ import Typography from "@material-ui/core/Typography";
 import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import CardContent from "@material-ui/core/CardContent";
+import makeStyles from "@material-ui/core/styles/makeStyles";
+import useTheme from "@material-ui/core/styles/useTheme";
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/styles';
+
+const StyledCardMedia = withStyles({
+    img: {
+        width: 125
+    }
+})(CardMedia);
+
+const StyledCard = withStyles({
+    root: {
+        display: 'flex',
+        justifyContent: 'space-between',
+        marginBottom: '10px',
+        boxShadow: 'none'
+    }
+})(Card);
+
+const StyledCardContent = withStyles({
+   root: {
+       flex: '1 0 auto'
+   }
+})(CardContent);
 
 export class MusicListCard extends React.Component {
     constructor(props) {
@@ -15,38 +40,28 @@ export class MusicListCard extends React.Component {
 
     render() {
 
-        const classes = makeStyles({
-            card: {
-                maxWidth: 345,
-            },
-            media: {
-                height: 140,
-            },
-        });
-
         return (
-            <Card className={classes.card}>
-                <CardActionArea>
-                    {/*<CardMedia
-                        className={classes.media}
-                        image="/static/images/cards/contemplative-reptile.jpg"
-                        title="Contemplative Reptile"
-                    />*/}
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
+            <StyledCard>
+                <div>
+                    <StyledCardContent>
+                        <Typography component="h5" variant="h5">
                             {this.props.title}
                         </Typography>
-                        <Typography variant="body2" color="textSecondary" component="p">
-                            {this.props.description}
+                        <Typography variant="subtitle1" color="textSecondary">
+                            Album
                         </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button size="small" color="primary">
-                        {this.props.music_id}
-                    </Button>
-                </CardActions>
-            </Card>
+                        <Typography variant="subtitle2" color="textSecondary">
+                            Artiste
+                        </Typography>
+                    </StyledCardContent>
+                </div>
+                <StyledCardMedia
+                    component="img"
+                    alt="Cover"
+                    src={this.props.image}
+                    title="Cover"
+                />
+            </StyledCard>
         )
     }
 }
