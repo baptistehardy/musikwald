@@ -41,8 +41,10 @@ export class MusicList extends React.Component {
                 <CircularProgress/>
             )
         } else {
+            console.log(this.state.music);
+
             this.albums = this.state.music.map((music) =>
-                <MusicListCard key={music.id} title={music.name} artiste="artiste" duration={music.duration} />
+                <MusicListCard key={music.id} title={music.name} artiste="artiste" duration={music.duration} image={music.image} />
             );
 
             return (

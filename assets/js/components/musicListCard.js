@@ -14,7 +14,7 @@ import { withStyles } from '@material-ui/styles';
 
 const StyledCardMedia = withStyles({
     img: {
-        width: 137
+        width: 125
     }
 })(CardMedia);
 
@@ -22,7 +22,8 @@ const StyledCard = withStyles({
     root: {
         display: 'flex',
         justifyContent: 'space-between',
-        marginBottom: '10px'
+        marginBottom: '10px',
+        boxShadow: 'none'
     }
 })(Card);
 
@@ -47,18 +48,17 @@ export class MusicListCard extends React.Component {
                             {this.props.title}
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
+                            Album
+                        </Typography>
+                        <Typography variant="subtitle2" color="textSecondary">
                             Artiste
                         </Typography>
                     </StyledCardContent>
-                    <CardActions>
-                        <Button size="small" color="primary">
-                            Détails
-                        </Button>
-                    </CardActions>
                 </div>
                 <StyledCardMedia
                     component="img"
-                    src="https://via.placeholder.com/150"
+                    alt="Cover"
+                    src={this.props.image}
                     title="Cover"
                 />
             </StyledCard>
