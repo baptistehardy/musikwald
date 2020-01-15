@@ -30,9 +30,6 @@ class AppFixtures extends Fixture
         $manager->persist($atlanticRecording);
 
         //Declaration of all artists
-        $multiInterpretes = new Artist();
-        $multiInterpretes->setName('Multi interpretes');
-        $manager->persist($multiInterpretes);
 
         $snoopDog = new Artist();
         $snoopDog->setName('Snoop Dog');
@@ -67,7 +64,8 @@ class AppFixtures extends Fixture
         //Album Mac and Devin
         $macAndDevin = new Album();
         $macAndDevin->setName("Mac and Devin Go To High School");
-        $macAndDevin->addArtist($multiInterpretes);
+        $macAndDevin->addArtist($snoopDog);
+        $macAndDevin->addArtist($wizKhalifa);
 
         //All music
         $smokinOn = new Music();

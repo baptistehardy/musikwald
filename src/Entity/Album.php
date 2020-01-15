@@ -5,10 +5,11 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(normalizationContext={"groups"={"album"}})
  * @ORM\Entity(repositoryClass="App\Repository\AlbumRepository")
  */
 class Album
@@ -17,26 +18,31 @@ class Album
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"album", "artist", "music", "genre"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"album", "artist", "music", "genre"})
      */
     private $name;
 
     /**
      * @ORM\OneToMany(targetEntity="App\Entity\Music", mappedBy="album")
+     * @Groups({"album", "artist"})
      */
     private $musics;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Artist", inversedBy="albums")
+     * @Groups({"album", "music"})
      */
     private $artists;
 
     /**
      * @ORM\Column(type="integer", length=255)
+     * @Groups({"album", "music", "genre"})
      */
     private $releaseYear;
 
