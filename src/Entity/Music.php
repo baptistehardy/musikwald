@@ -5,10 +5,11 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(normalizationContext={"groups"={"music"}})
  * @ORM\Entity(repositoryClass="App\Repository\MusicRepository")
  */
 class Music
@@ -17,41 +18,49 @@ class Music
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"music", "album", "artist", "genre"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"music", "album", "artist", "genre"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="integer")
+     * @Groups({"music", "album", "artist", "genre"})
      */
     private $duration;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Artist", inversedBy="musics")
+     * @Groups({"music", "album", "genre"})
      */
     private $artists;
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Genre", inversedBy="musics")
+     * @Groups({"music", "album"})
      */
     private $genres;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Album", inversedBy="musics")
+     * @Groups({"music", "genre"})
      */
     private $album;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Label", inversedBy="musics")
+     * @Groups({"music", "album", "genre"})
      */
     private $label;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"music", "album", "artist", "genre"})
      */
     private $image;
 
