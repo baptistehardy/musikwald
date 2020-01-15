@@ -26,7 +26,7 @@ class Music
     private $name;
 
     /**
-     * @ORM\Column(type="time")
+     * @ORM\Column(type="integer")
      */
     private $duration;
 
@@ -49,6 +49,11 @@ class Music
      * @ORM\ManyToOne(targetEntity="App\Entity\Label", inversedBy="musics")
      */
     private $label;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
 
     public function __construct()
     {
@@ -73,12 +78,12 @@ class Music
         return $this;
     }
 
-    public function getDuration(): ?\DateTimeInterface
+    public function getDuration(): ?int
     {
         return $this->duration;
     }
 
-    public function setDuration(\DateTimeInterface $duration): self
+    public function setDuration(int $duration): self
     {
         $this->duration = $duration;
 
@@ -90,13 +95,13 @@ class Music
      */
     public function getArtists(): Collection
     {
-        return $this->Artists;
+        return $this->artists;
     }
 
     public function addArtist(Artist $artist): self
     {
-        if (!$this->Artists->contains($artist)) {
-            $this->Artists[] = $artist;
+        if (!$this->artists->contains($artist)) {
+            $this->artists[] = $artist;
         }
 
         return $this;
@@ -104,8 +109,8 @@ class Music
 
     public function removeArtist(Artist $artist): self
     {
-        if ($this->Artists->contains($artist)) {
-            $this->Artists->removeElement($artist);
+        if ($this->artists->contains($artist)) {
+            $this->artists->removeElement($artist);
         }
 
         return $this;
@@ -157,6 +162,18 @@ class Music
     public function setLabel(?Label $label): self
     {
         $this->label = $label;
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }

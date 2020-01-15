@@ -36,7 +36,7 @@ class Album
     private $artists;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="integer", length=255)
      */
     private $releaseYear;
 
@@ -120,12 +120,12 @@ class Album
         return $this;
     }
 
-    public function getReleaseYear(): ?string
+    public function getReleaseYear(): ?int
     {
         return $this->releaseYear;
     }
 
-    public function setReleaseYear(string $releaseYear): self
+    public function setReleaseYear(int $releaseYear): self
     {
         $this->releaseYear = $releaseYear;
 
