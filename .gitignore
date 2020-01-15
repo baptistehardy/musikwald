@@ -6,6 +6,7 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
+/src/Migrations/
 
 # IDEs and editors
 

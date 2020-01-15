@@ -4,3 +4,8 @@ servedev:
 
 encoredev:
 	yarn run encore dev --watch
+
+db:
+	php bin/console make:migration -n
+	php bin/console doctrine:migration:migrate -n
+	php bin/console doctrine:fixtures:load -n
