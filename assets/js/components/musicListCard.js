@@ -10,7 +10,7 @@ import CardContent from "@material-ui/core/CardContent";
 import makeStyles from "@material-ui/core/styles/makeStyles";
 import useTheme from "@material-ui/core/styles/useTheme";
 import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/styles';
+import { withStyles } from '@material-ui/core/styles';
 
 const StyledCardMedia = withStyles({
     img: {
@@ -36,7 +36,25 @@ const StyledCardContent = withStyles({
 export class MusicListCard extends React.Component {
     constructor(props) {
         super(props);
+
+        this.artists = this.artistsToString(this.props.artists);
     }
+
+    artistsToString(artists) {
+
+
+        let artistsArray = [];
+
+        console.log(artists);
+
+        artistsArray = artists.map((artist, key) => {
+            artistsArray.fill(artist.name)
+        });
+
+        return artistsArray.join(', ');
+    }
+
+
 
     render() {
 
@@ -51,7 +69,7 @@ export class MusicListCard extends React.Component {
                             Album
                         </Typography>
                         <Typography variant="subtitle2" color="textSecondary">
-                            Artiste
+                            {this.artists}
                         </Typography>
                     </StyledCardContent>
                 </div>
