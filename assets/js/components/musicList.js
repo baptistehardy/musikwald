@@ -44,7 +44,7 @@ export class MusicList extends React.Component {
             console.log(this.state.music);
 
             this.albums = this.state.music.map((music) =>
-                <MusicListCard key={music.id} title={music.name} artiste="artiste" duration={music.duration} image={music.image} />
+                <MusicListCard key={music.id} title={music.name} artists={music.artists} duration={music.duration} image={music.image} />
             );
 
             return (
