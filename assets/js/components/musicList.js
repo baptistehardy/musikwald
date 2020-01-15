@@ -1,5 +1,6 @@
 import * as React from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import {MusicListCard} from "./musicListCard";
 
 export class MusicList extends React.Component {
     constructor(props) {
@@ -12,7 +13,12 @@ export class MusicList extends React.Component {
     }
 
     getMusicList() {
-        fetch(`http://jsonplaceholder.typicode.com/comments`)
+        fetch(`http://127.0.0.1:8000/api/musics`, {
+            method: 'GET',
+            headers: {
+                'accept': 'application/json'
+            }
+        })
             .then((response) => {
                 return response.json()
             })
@@ -35,14 +41,16 @@ export class MusicList extends React.Component {
                 <CircularProgress/>
             )
         } else {
-            let data = this.state.music;
-            console.log(data);
+            this.albums = this.state.music.map((music) =>
+                <MusicListCard key={music.id} title={music.name} artiste="artiste" duration={music.duration} />
+            );
 
-            this.props.data.map((e, i) => {
-                    console.log("Entered");
-                    // Return the element. Also pass key
-                return (<p> {e.name} </p>)
-                })
+            return (
+                <div>
+                    <h1>Morceaux</h1>
+                    <div>{this.albums}</div>
+                </div>
+            )
         }
     }
 }
