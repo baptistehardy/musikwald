@@ -1,5 +1,8 @@
 # musikwald
 
+[![pipeline status](https://gitlab.com/baptistehardy/musikwald/badges/master/pipeline.svg)](https://gitlab.com/baptistehardy/musikwald/commits/master)
+[![coverage report](https://gitlab.com/baptistehardy/musikwald/badges/master/coverage.svg)](https://gitlab.com/baptistehardy/musikwald/commits/master)
+
 ### Prérequis
 
 - PHP 7.3 >
@@ -48,5 +51,7 @@ yarn run encore dev
 ```bash
 symfony serve
 ```
+
+<br/>
 
 Le site est alors disponible en [127.0.0.1:8000](http://127.0.0.1:8000).
