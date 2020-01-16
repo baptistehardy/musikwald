@@ -47,8 +47,8 @@ export class MusicListCard extends React.Component {
 
         console.log(artists);
 
-        artistsArray = artists.map((artist, key) => {
-            artistsArray.fill(artist.name)
+        artists.map((artist, key) => {
+            artistsArray.push(artist.name);
         });
 
         return artistsArray.join(', ');
@@ -66,7 +66,7 @@ export class MusicListCard extends React.Component {
                             {this.props.title}
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
-                            Album
+                            {this.props.album}
                         </Typography>
                         <Typography variant="subtitle2" color="textSecondary">
                             {this.artists}
