@@ -25,6 +25,7 @@ import {AlbumList} from "./albumList";
 import {ArtistList} from "./artistList";
 import {LabelList} from "./labelList";
 import NotFound from "./404";
+import {Login} from "./login";
 
 const drawerWidth = 240;
 
@@ -103,6 +104,7 @@ export default function Navbar() {
                             </ListItemIcon>
                             <ListItemText primary="Labels" />
                         </ListItem>
+                        <Login/>
                     </List>
                 </Drawer>
                 <main className={styles.content}>
