@@ -1,4 +1,4 @@
-servedev:
+serve:
 	yarn run encore dev
 	symfony serve
 
@@ -9,3 +9,8 @@ db:
 	php bin/console make:migration -n
 	php bin/console doctrine:migration:migrate -n
 	php bin/console doctrine:fixtures:load -n
+
+install:
+	composer install
+	yarn install
+	make db
