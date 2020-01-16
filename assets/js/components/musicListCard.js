@@ -11,6 +11,8 @@ import makeStyles from "@material-ui/core/styles/makeStyles";
 import useTheme from "@material-ui/core/styles/useTheme";
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import IconButton from "@material-ui/core/IconButton";
+import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 
 const StyledCardMedia = withStyles({
     img: {

@@ -34,7 +34,11 @@ export class Login extends React.Component {
     render() {
 
         if (this.state.authenticated) {
-            return (<br/>)
+            return (
+                <ListItem button component="a" href="/logout">
+                    <ListItemText primary="Logout" />
+                </ListItem>
+            )
         } else {
             return (
                 <ListItem button component="a" href="/login">
