@@ -1,0 +1,72 @@
+# Création de 2 services
+# - db : Service MySQL pour stocker les données
+# - web : Service contenant PHP/Symfony ainsi que musikwald
+
+version: '3.5'
+services:
+  db:
+    # Utilise la dernière version de MySQL
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password --sql_mode="NO_ENGINE_SUBSTITUTION"
+    restart: always
+    # Identifiants pour accéder à la base
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: root
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: musikwald
+    # Port hôte 7002 lié au port 3306 du container
+    ports:
+      - "7002:3306"
+    # Le dossier ~/.docker/var/lib/mysql doit exister pour sauvegarder la base de données
+    # Permet de conserver les données en cas de rebuild
+    volumes:
+      - "~/.docker/var/lib/mysql/musikwald:/var/lib/mysql"
+    networks:
+      musikwald:
+        aliases:
+          # Nom du service sur le réseau "musikwald"
+          - db
+  web:
+    build:
+      context: .
+    ports:
+      # Port hôte 7000 connecté au port 80 du container
+      - "7000:80"
+    depends_on:
+      # Le service a besoin de "db" pour fonctionner
+      - db
+    restart: on-failure
+    # Le répertoire courant est l'endroit où Apache utilise les fichiers
+    volumes:
+      - .:/var/www/html/musikwald:delegated
+      - vendor:/var/www/html/musikwald/vendor
+      - cache:/var/www/html/musikwald/var/cache
+    networks:
+      musikwald:
+        aliases:
+          # Nom du service sur le réseau "musikwald"
+          - web
+  pma:
+    image: phpmyadmin/phpmyadmin:4.9
+    restart: on-failure
+    networks:
+      musikwald:
+        aliases:
+          - pma
+    ports:
+      - "7001:80"
+    environment:
+      PMA_HOST: db
+      PMA_ABSOLUTE_URI: http://mw.phpmyadmin.local/
+      PMA_USER: root
+      PMA_PASSWORD: phpmyadmin
+networks:
+  musikwald:
+
+# Permet d'améliorer les perfomance sur OSX
+# Dossiers vendor et cache ne sont pas synchronisés
+# Ils ne pointent sur rien
+volumes:
+  vendor:
+  cache:
