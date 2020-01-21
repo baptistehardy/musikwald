@@ -3,6 +3,7 @@
         "@babel/preset-react": "^7.0.0",
         "@symfony/webpack-encore": "^0.28.2",
         "babel-preset-react": "^6.24.1",
+        "bootstrap": "^4.4.1",
         "core-js": "^3.0.0",
         "prop-types": "^15.7.2",
         "react": "^16.12.0",
