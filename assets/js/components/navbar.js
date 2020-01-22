@@ -26,12 +26,17 @@ import {ArtistList} from "./artistList";
 import {LabelList} from "./labelList";
 import NotFound from "./404";
 import {Login} from "./login";
+import Button from "@material-ui/core/Button";
 
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
     root: {
         display: 'flex',
+        flexGrow: 1
+    },
+    title: {
+        flexGrow: 1
     },
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
@@ -60,7 +65,7 @@ export default function Navbar() {
                 <CssBaseline />
                 <AppBar position="fixed" className={styles.appBar} component={Link} to="/">
                     <Toolbar>
-                        <Typography variant="h6" noWrap>
+                        <Typography variant="h6" noWrap classes={styles.title}>
                             musikwald
                         </Typography>
                     </Toolbar>
