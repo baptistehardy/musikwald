@@ -5,8 +5,7 @@ security:
 
     role_hierarchy:
         ROLE_USER:          [ROLE_USER]
-        ROLE_ADMIN:         [ROLE_ADMIN]
-        ROLE_SUPERADMIN:    [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_ADMIN:         [ROLE_USER, ROLE_ADMIN]
 
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
@@ -31,6 +30,5 @@ security:
     # Note: Only the *first* access control that matches will be used
     access_control:
         - { path: '^/login',                roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: '^/admin',                roles: ROLE_ADMIN] }
         - { path: '^/api/authenticated',    roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: '^/api',                  roles: ROLE_USER }
