@@ -56,13 +56,7 @@ export class MusicList extends React.Component {
 
     render() {
         if (this.state.isLoading) {
-            if(!this.state.authenticated) {
-                return <Typography>Veuillez vous connecter</Typography>
-            } else {
-                return (
-                    <CircularProgress/>
-                )
-            }
+            return <CircularProgress/>
         } else {
             this.albums = this.state.music.map((music) =>
                 <MusicListCard key={music.id} title={music.name} artists={music.artists} album={music.album.name} duration={music.duration} image={music.image} />
