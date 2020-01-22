@@ -1,4 +1,4 @@
-MIT License
+cMIT License
 
 Copyright (c) 2019 Baptiste Hardy, François Da Silva Rolo, Maxime Rivierre
 
