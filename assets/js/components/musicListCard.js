@@ -13,6 +13,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import IconButton from "@material-ui/core/IconButton";
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
+import ArtistDisplay from "./artistDisplay";
 
 const StyledCardMedia = withStyles({
     img: {
@@ -38,28 +39,9 @@ const StyledCardContent = withStyles({
 export class MusicListCard extends React.Component {
     constructor(props) {
         super(props);
-
-        this.artists = this.artistsToString(this.props.artists);
     }
-
-    artistsToString(artists) {
-
-
-        let artistsArray = [];
-
-        console.log(artists);
-
-        artists.map((artist, key) => {
-            artistsArray.push(artist.name);
-        });
-
-        return artistsArray.join(', ');
-    }
-
-
 
     render() {
-
         return (
             <StyledCard>
                 <div>
@@ -71,7 +53,7 @@ export class MusicListCard extends React.Component {
                             {this.props.album}
                         </Typography>
                         <Typography variant="subtitle2" color="textSecondary">
-                            {this.artists}
+                            <ArtistDisplay artists={this.props.artists}/>
                         </Typography>
                     </StyledCardContent>
                 </div>
