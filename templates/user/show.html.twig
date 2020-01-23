@@ -5,7 +5,7 @@
 {% block body %}
     <h1>Utilisateur N°{{ user.id }}</h1>
 
-    <table class="table">
+    <table class="table table-bordered table-hover">
         <tbody>
             <tr>
                 <th>ID</th>
@@ -18,10 +18,6 @@
             <tr>
                 <th>Roles</th>
                 <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
-            <tr>
-                <th>Password</th>
-                <td>{{ user.password }}</td>
             </tr>
             <tr>
                 <th>ApiToken</th>
