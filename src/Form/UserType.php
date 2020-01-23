@@ -20,7 +20,6 @@ class UserType extends AbstractType
                     'multiple' => true,
                 ]
             )
-            ->add('password')
             ->add('apiToken')
         ;
     }
