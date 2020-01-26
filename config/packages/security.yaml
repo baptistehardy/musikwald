@@ -2,7 +2,6 @@ security:
     encoders:
         App\Entity\User:
             algorithm: auto
-
     role_hierarchy:
         ROLE_USER:          [ROLE_USER]
         ROLE_ADMIN:         [ROLE_USER, ROLE_ADMIN]
