@@ -21,9 +21,10 @@ RUN echo "\n\n[mysql]\nhost=db\nuser=root\npassword=password\ndatabase=musikwald
 # Installation de Composer
 RUN mkdir -p /root/bin/
 RUN cd /root/bin/ && \
-    curl -sSk https://getcomposer.org/installer | php -- --disable-tls && \
-    mv composer.phar /usr/local/bin/composer
-   #wget  https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O ./composer-setup.php -q && php ./composer-setup.php --quiet && mv composer.phar composer && rm composer-setup.php
+    wget  https://raw.githubusercontent.com/composer/getcomposer.org/76a7060ccb93902cd7576b67264ad91c8a2700e2/web/installer -O ./composer-setup.php -q && \
+    php ./composer-setup.php --quiet &&  \
+    mv composer.phar composer && \
+    rm composer-setup.php
 
 # Extraction des sources PHP
 RUN docker-php-source extract
