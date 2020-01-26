@@ -3,7 +3,7 @@
 # Permet aussi de créer un vhost musikwald
 
 # Utilise la dernière version de PHP
-From php:7.4-apache
+FROM php:7.4-apache
 
 # Répertoire de travail courant pendant l'installation
 WORKDIR /var/www/html/
