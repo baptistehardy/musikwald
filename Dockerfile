@@ -13,7 +13,14 @@ EXPOSE 80
 
 # Installation de vim et d'utilitaires MySQL
 RUN apt-get update -y -qq && \
-    apt-get install -qq -y wget vim mariadb-client
+    apt-get install -qq -y git-core curl build-essential openssl libssl-dev wget vim mariadb-client python3.7 make
+
+# Installation de Node
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash && \
+    apt-get install -qq -y nodejs
+
+# Installation de yarn
+RUN curl -o- -L https://yarnpkg.com/install.sh | bash
 
 # Configuration automatique MySQL
 RUN echo "\n\n[mysql]\nhost=db\nuser=root\npassword=password\ndatabase=musikwald" >> /etc/mysql/my.cnf
