@@ -1,0 +1,85 @@
+# This file is used by Docker to configure the required services
+# to run easyReco.
+# Two services are created:
+# - db A service running a MySQL instance. It's where the datas are stored.
+# - web A service running PHP/Apache to run PhpMyAdmin and easyReco.
+
+version: '3.5'
+services:
+  db:
+    # Uses the MySQL 5 image
+    image: mysql:latest
+    command: --default-authentication-plugin=mysql_native_password --sql_mode="NO_ENGINE_SUBSTITUTION"
+    restart: always
+    # Below we define environment variables so the credentials are known.
+    environment:
+      MYSQL_ROOT_PASSWORD: u4HV3iiiwRf5GKwyBFDGQ
+      MYSQL_USER: musikwald
+      MYSQL_PASSWORD: 4gvvTxpzCyFxQDdvs
+      MYSQL_DATABASE: musikwald
+    # The host port 3307 is mapped to the container port 3306.
+    # So we can use localhost:3307 or <containerIpOrId>:3306
+    ports:
+      - "7002:3306"
+    # The directory ~/.docker/var/lib/mysql has to exist to store the
+    # database between rebuild.
+    volumes:
+      - "~/.docker/var/lib/mysql/musikwald:/var/lib/mysql"
+    networks:
+      musikwald:
+        aliases:
+          # The service name on the network called "musikwald"
+          - db
+  web:
+    build:
+      context: .
+    ports:
+      # The host port 4000 is mapped to the container port 80.
+      - "7000:80"
+    depends_on:
+      # The service needs db to work.
+      - db
+    restart: on-failure
+    # The current directory is where Apache in the container serves the
+    # files.
+    volumes:
+      - nfsmount:/var/www/html/musikwald:delegated
+      - vendor:/var/www/html/musikwald/vendor
+      - cache:/var/www/html/musikwald/var/cache
+
+
+    networks:
+      musikwald:
+        aliases:
+          # The service name on the network named "musikwald"
+          - web
+  pma:
+    image: phpmyadmin/phpmyadmin:latest
+    restart: on-failure
+    networks:
+      musikwald:
+        aliases:
+          - pma
+    ports:
+      - "7001:80"
+    environment:
+      PMA_HOST: db
+      PMA_ABSOLUTE_URI: http://mw.phpmyadmin.local/
+      PMA_USER: root
+      PMA_PASSWORD: u4HV3iiiwRf5GKwyBFDGQ
+networks:
+  musikwald:
+
+# To speed up the performances on OSX
+# the directories vendor, cache, log and library are not
+# synced between the host and the container. That's why
+# they point to empty.
+volumes:
+  vendor:
+  cache:
+  nfsmount:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
+      device: ":${MUSIKWALD_PATH}"
