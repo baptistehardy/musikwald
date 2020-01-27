@@ -16,15 +16,17 @@ install:
 	make db
 	
 	
-# Empty OS by default.
+# Récupère l'OS
 os :=
 ifeq ($(shell uname),Darwin)
 	os := -osx
 endif
 
-# Start the containers
-# OSX is a bit different, it uses an NFS mount instead of the default bind mount
-# It required the variable "MUSIKWALD_PATH" used in docker-compose-osx.yml.
+# Construit les containers
+docker-build:
+	MUSIKWALD_PATH=$(shell pwd) docker-compose -f docker-compose${os}.yml build
+
+# Démarre les containers, avec le bon docker-compose.yml en fonction de l'OS
 docker-up:
 	mkdir -p ~/.docker/var/lib/mysql/musikwald/ && \
 	if [ `docker volume ls | grep 'musikwald_nfsmount'` ]; then \
@@ -32,19 +34,15 @@ docker-up:
 	fi && \
 	MUSIKWALD_PATH=$(shell pwd) docker-compose -f docker-compose${os}.yml up
 
-# Start an interactive shell on the web container
+# Terminal interactif sur le container web
 docker-bash-web:
 	docker exec -it musikwald_web_1 bash
 
-# Start an interactive shell on the db container
+# Terminal interactif sur le container de la base de données
 docker-bash-db:
 	docker exec -it musikwald_db_1 bash
 
-# Run the command given in variable cmd in the container musikwald_web_1
-docker-cmd:
-	if [ ! "${cmd}" ]; then echo "\033[0;31mUsage: make docker-cmd cmd='myCommand'\033[0m"; exit 1; fi && \
-	docker exec -it musikwald_web_1 ${cmd}
-
-# Build the container
-docker-build:
-	MUSIKWALD_PATH=$(shell pwd) docker-compose -f docker-compose${os}.yml build
+docker:
+	make docker-build
+	make install
+	make docker-up
