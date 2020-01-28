@@ -51,8 +51,8 @@ services:
     ports:
       - "7001:80"
     environment:
-      PMA_HOST: db
-      PMA_ABSOLUTE_URI: http://mw.phpmyadmin.local/
+      PMA_HOST: ${PMA_HOST}
+      PMA_ABSOLUTE_URI: ${PMA_ABSOLUTE_URI}
       PMA_USER: ${PMA_USER}
       PMA_PASSWORD: ${PMA_PASSWORD}
   encore:
