@@ -59,7 +59,7 @@ export class ArtistList extends React.Component {
             return <CircularProgress/>
         } else {
             this.artists = this.state.artists.map((artist) =>
-                <ArtistListCard key={artist.id} name={artist.name} />
+                <ArtistListCard key={artist.id} id={artist.id} name={artist.name} />
             );
 
             return (
