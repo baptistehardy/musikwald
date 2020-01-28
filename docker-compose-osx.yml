@@ -9,6 +9,7 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
+      MUSQL_USER: ${MUSQL_USER}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
@@ -36,6 +37,7 @@ services:
       - nfsmount:/var/www/html/musikwald:delegated
       - vendor:/var/www/html/musikwald/vendor
       - cache:/var/www/html/musikwald/var/cache
+      - node:/var/www/html/musikwald/node_modules
 
     networks:
       musikwald:
@@ -71,6 +73,7 @@ networks:
 volumes:
   vendor:
   cache:
+  node:
   nfsmount:
     driver: local
     driver_opts:
