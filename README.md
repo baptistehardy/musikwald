@@ -10,7 +10,7 @@
 - Yarn
 - [Symfony CLI](https://symfony.com/download)
 
-### Installation
+### Installation classique
 
 #### Avec `make`
 
@@ -55,3 +55,15 @@ symfony serve
 <br/>
 
 Le site est alors disponible en [127.0.0.1:8000](http://127.0.0.1:8000).
+
+### Installation docker
+
+- Lancer le build des containers :
+```bash
+make docker  
+```
+
+- Patienter le tant que la compilation avec webpack soit complétement effectuée
+
+Le serveur web est alors accessible en [0.0.0.0:7000](http://0.0.0.0:7000/)
+L'interface PhpMyAdmin [0.0.0.0:7001](http://0.0.0.0:7001/)
