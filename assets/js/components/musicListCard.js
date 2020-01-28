@@ -1,4 +1,5 @@
 import * as React from "react";
+import {Link} from 'react-router-dom';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -42,12 +43,16 @@ export class MusicListCard extends React.Component {
     }
 
     render() {
+        const preventDefault = event => event.preventDefault();
+
         return (
             <StyledCard>
                 <div>
                     <StyledCardContent>
                         <Typography component="h5" variant="h5">
-                            {this.props.title}
+                            <Link to={`/morceau/${this.props.id}`}>
+                                {this.props.title}
+                            </Link>
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
                             {this.props.album}

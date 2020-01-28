@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link, BrowserRouter as Router, Switch } from 'react-router-dom'
+import { Route, Link, HashRouter as Router, Switch } from 'react-router-dom'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -20,6 +20,7 @@ import MusicNoteOutlinedIcon from '@material-ui/icons/MusicNoteOutlined';
 
 import {Home} from "./home";
 import {MusicList} from "./musicList";
+import {MusicDetails} from "./musicDetails"
 import {GenreList} from "./genreList";
 import {AlbumList} from "./albumList";
 import {ArtistList} from "./artistList";
@@ -56,7 +57,7 @@ const useStyles = makeStyles(theme => ({
     toolbar: theme.mixins.toolbar,
 }));
 
-export default function Navbar() {
+export default function App() {
     const styles = useStyles();
 
     return (
@@ -116,7 +117,8 @@ export default function Navbar() {
                     <div className={styles.toolbar} />
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        <Route path="/morceau" component={MusicList} />
+                        <Route exact path="/morceau" component={MusicList} />
+                        <Route path="/morceau/:id" component={MusicDetails} />
                         <Route path="/artiste" component={ArtistList} />
                         <Route path="/album" component={AlbumList} />
                         <Route path="/genre" component={GenreList} />
