@@ -16,7 +16,7 @@ RUN apt-get update -y -qq && \
     libfreetype6-dev dmtx-utils
 
 # Configuration de MySQL par défaut pour se connecter automatiquement
-RUN echo "\n\n[mysql]\nhost=db\nuser=root\npassword=u4HV3iiiwRf5GKwyBFDGQ\ndatabase=musikwald" >> /etc/mysql/my.cnf
+# RUN echo "\n\n[mysql]\nhost=db\nuser=root\npassword=u4HV3iiiwRf5GKwyBFDGQ\ndatabase=musikwald" >> /etc/mysql/my.cnf
 
 # Installe Composer
 RUN mkdir -p /root/bin/

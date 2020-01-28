@@ -5,15 +5,12 @@
 version: '3.5'
 services:
   db:
-    image: mysql:latest
-    command: --default-authentication-plugin=mysql_native_password --sql_mode="NO_ENGINE_SUBSTITUTION"
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
     restart: always
-    # Identifiant de connexion
     environment:
-      MYSQL_ROOT_PASSWORD: u4HV3iiiwRf5GKwyBFDGQ
-      MYSQL_USER: musikwald
-      MYSQL_PASSWORD: 4gvvTxpzCyFxQDdvs
-      MYSQL_DATABASE: musikwald
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
     ports:
       - "7002:3306"
     # Permet de stocker les données en cas de rebuild
@@ -56,8 +53,8 @@ services:
     environment:
       PMA_HOST: db
       PMA_ABSOLUTE_URI: http://mw.phpmyadmin.local/
-      PMA_USER: root
-      PMA_PASSWORD: u4HV3iiiwRf5GKwyBFDGQ
+      PMA_USER: ${PMA_USER}
+      PMA_PASSWORD: ${PMA_PASSWORD}
   encore:
     image: node:12-alpine
     volumes:
