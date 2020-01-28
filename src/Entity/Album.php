@@ -42,7 +42,7 @@ class Album
 
     /**
      * @ORM\Column(type="integer", length=255)
-     * @Groups({"album", "music", "genre"})
+     * @Groups({"album", "music", "genre","artist"})
      */
     private $releaseYear;
 

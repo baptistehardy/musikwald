@@ -48,7 +48,7 @@ class Music
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Album", inversedBy="musics")
-     * @Groups({"music", "genre", "artist_album_music"})
+     * @Groups({"music", "genre"})
      */
     private $album;
 

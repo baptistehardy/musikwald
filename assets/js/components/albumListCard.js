@@ -38,9 +38,11 @@ export default function AlbumListCard(props) {
                             {props.title}
                         </Link>
                     </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        <ArtistDisplay artists={props.artists}/>
-                    </Typography>
+                    {props.artists ? 
+                        <Typography variant="subtitle1" color="textSecondary">
+                            <ArtistDisplay artists={props.artists}/>
+                        </Typography>
+                         : null}
                     <Typography variant="subtitle2" color="textSecondary">
                         {props.releaseYear}
                     </Typography>

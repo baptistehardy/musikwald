@@ -58,9 +58,12 @@ export class MusicListCard extends React.Component {
                         <Typography variant="subtitle1" color="textSecondary">
                             {this.props.album}
                         </Typography>
-                        <Typography variant="subtitle2" color="textSecondary">
-                            <ArtistDisplay artists={this.props.artists}/>
-                        </Typography>
+                        {this.props.artists ? 
+                            <Typography variant="subtitle2" color="textSecondary">
+                                <ArtistDisplay artists={this.props.artists}/>
+                            </Typography>
+                         : null}
+                        
                     </StyledCardContent>
                 </div>
                 <StyledCardMedia
