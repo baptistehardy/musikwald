@@ -23,11 +23,15 @@ import {MusicList} from "./musicList";
 import {MusicDetails} from "./musicDetails"
 import {GenreList} from "./genreList";
 import {AlbumList} from "./albumList";
+import {AlbumDetails} from "./albumDetails"
 import {ArtistList} from "./artistList";
+import {ArtistDetails} from "./artistDetails"
 import {LabelList} from "./labelList";
 import NotFound from "./404";
 import {Login} from "./login";
 import Button from "@material-ui/core/Button";
+import {GenreDetails} from "./genreDetails";
+import {LabelDetails} from "./labelDetails";
 
 const drawerWidth = 240;
 
@@ -119,10 +123,14 @@ export default function App() {
                         <Route exact path="/" component={Home} />
                         <Route exact path="/morceau" component={MusicList} />
                         <Route path="/morceau/:id" component={MusicDetails} />
-                        <Route path="/artiste" component={ArtistList} />
-                        <Route path="/album" component={AlbumList} />
-                        <Route path="/genre" component={GenreList} />
-                        <Route path="/label" component={LabelList} />
+                        <Route exact path="/artiste" component={ArtistList} />
+                        <Route path="/artiste/:id" component={ArtistDetails} />
+                        <Route exact path="/album" component={AlbumList} />
+                        <Route path="/album/:id" component={AlbumDetails} />
+                        <Route exact path="/genre" component={GenreList} />
+                        <Route path="/genre/:id" component={GenreDetails} />
+                        <Route exact path="/label" component={LabelList} />
+                        <Route path="/label/:id" component={LabelDetails} />
                         <Route component={NotFound} />
                     </Switch>
                 </main>

@@ -59,7 +59,7 @@ export class GenreList extends React.Component {
             return <CircularProgress/>
         } else {
             this.genres = this.state.genres.map((genre) =>
-                <ArtistListCard key={genre.id} name={genre.label} />
+                <ArtistListCard key={genre.id} id={genre.id} name={genre.label} />
             );
 
             return (
