@@ -8,7 +8,6 @@ WORKDIR /var/www/html/
 # Expose le port 80 pour Apache
 EXPOSE 80
 
-
 # Installation de libirairies nécessaires
 RUN apt-get update -y -qq && \
     apt-get install -qq -y zip unzip wget git vim zlib1g-dev libmemcached-dev \
@@ -37,6 +36,7 @@ RUN a2enmod rewrite
 RUN cd /etc/apache2/sites-available && cp 000-default.conf musikwald.conf && \
     sed -ri 's/#(ServerName) .+/\1 musikwald.local/'  musikwald.conf && \
     sed -ri 's_(DocumentRoot) .+_\1 /var/www/html/musikwald/public_' musikwald.conf && \
+    rm -rf /etc/apache2/sites-enabled/000-default.conf && \
     a2ensite musikwald.conf
 
-WORKDIR /var/www/html/musikwald
+WORKDIR /var/www/html/musikwald/public
