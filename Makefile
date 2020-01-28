@@ -44,5 +44,4 @@ docker-bash-db:
 
 docker:
 	make docker-build
-	make install
 	make docker-up
