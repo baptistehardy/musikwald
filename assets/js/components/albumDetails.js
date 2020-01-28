@@ -50,8 +50,62 @@ export class AlbumDetails extends React.Component {
             return <CircularProgress/>
         } 
         else {
+            this.artists = "";  
+            this.state.album.artists.map((artist, i) => {
+                if (this.state.album.artists.length === i + 1) {
+                    // last one
+                    this.artists += artist.name;
+                } else {
+                    // not last one
+                    this.artists += artist.name + ", " ;
+                }
+            });
+            this.musics = this.state.album.musics.map((music) =>
+                <MusicListCard key={music.id} id={music.id} title={music.name} artists={music.artists} album={this.state.album.name} duration={music.duration} image={music.image} />
+            );
             return (
-                <Typography>{this.state.album.name}</Typography>
+                <div>
+                    <Grid container spacing={2}>
+                        <Grid item>
+                            <img src={this.state.album.musics[0].image} alt={this.state.album.name} style={{
+                                width: 200,
+                                height: 200,
+                                borderRadius: 4,
+                                overflow: "hidden",
+                                borderWidth: 3,
+                            }}/>
+                        </Grid>
+                        <Grid item xs={12} sm container>
+                            <Grid item xs container direction="column" spacing={1}>
+                                <Grid item xs>
+                                    <Typography component="h5" variant="h5">{this.state.album.name}</Typography>
+                                    <Typography variant="subtitle1" color="textSecondary">{this.artists}</Typography>
+                                    <Typography variant="subtitle2" color="textSecondary">{this.state.album.releaseYear}</Typography>
+                                </Grid>
+                                <Grid item xs>
+                                    <Button
+                                        variant="contained"
+                                        color="secondary"
+                                        startIcon={<DeleteIcon />}
+                                    >
+                                        Supprimer
+                                    </Button>
+                                    &nbsp;
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        startIcon={<EditIcon />}
+                                    >
+                                        Modifier
+                                    </Button>
+                                
+                                </Grid>
+                            </Grid>
+                        </Grid>
+                    </Grid>
+                    <div>{this.musics}</div>
+                </div>
+                // <Typography>{this.state.album.name}</Typography>
             )
         }
     }

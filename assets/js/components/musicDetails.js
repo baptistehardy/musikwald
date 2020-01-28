@@ -66,16 +66,22 @@ export class MusicDetails extends React.Component {
                 <div>
                     <Grid container spacing={2}>
                         <Grid item>
-                            <img src={this.state.music.image} alt={this.state.music.name} width="200" height="200"/>
+                            <img src={this.state.music.image} alt={this.state.music.name} style={{
+                                width: 200,
+                                height: 200,
+                                borderRadius: 4,
+                                overflow: "hidden",
+                                borderWidth: 3,
+                            }}/>
                         </Grid>
                         <Grid item xs={12} sm container>
                             <Grid item xs container direction="column" spacing={1}>
                                 <Grid item xs>
-                                    <Typography><b>{this.state.music.name}</b></Typography>
-                                    <Typography>Artiste(s): {this.artists}</Typography>
-                                    <Typography>Durée: {this.state.music.duration}</Typography>
-                                    <Typography>ALbum: {this.state.music.album.name}</Typography>
-                                    <Typography>Label: {this.state.music.label.label}</Typography>
+                                    <Typography component="h5" variant="h5">{this.state.music.name}</Typography>
+                                    <Typography variant="subtitle1" color="textSecondary">{this.artists}</Typography>
+                                    <Typography variant="subtitle1" color="textSecondary">{this.state.music.album.name}</Typography>
+                                    <Typography variant="subtitle2" color="textSecondary">{this.state.music.duration}</Typography>
+                                    <Typography variant="subtitle2" color="textSecondary">{this.state.music.label.label}</Typography>
                                 </Grid>
                                 <Grid item xs>
                                     <Button
