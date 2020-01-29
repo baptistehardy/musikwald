@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Navbar from "./components/navbar";
+import App from "./components/app";
 
-class App extends React.Component {
+class RootApp extends React.Component {
     constructor(props) {
         super(props);
 
@@ -11,9 +11,9 @@ class App extends React.Component {
 
     render() {
         return (
-            <Navbar/>
+            <App/>
         );
     }
 }
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<RootApp />, document.getElementById('root'));

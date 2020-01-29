@@ -60,7 +60,7 @@ export class AlbumList extends React.Component {
             return <CircularProgress/>
         } else {
             this.albums = this.state.albums.map((album) =>
-                <AlbumListCard key={album.id} title={album.name} releaseYear={album.releaseYear} cover={album.musics[0].image} artists={album.artists}/>
+                <AlbumListCard key={album.id} id={album.id} title={album.name} releaseYear={album.releaseYear} cover={album.musics[0].image} artists={album.artists}/>
             );
 
             return (

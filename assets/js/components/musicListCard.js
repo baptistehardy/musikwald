@@ -1,4 +1,5 @@
 import * as React from "react";
+import {Link as RouterLink} from 'react-router-dom';
 import CircularProgress from "@material-ui/core/CircularProgress";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
@@ -14,6 +15,7 @@ import { withStyles } from '@material-ui/core/styles';
 import IconButton from "@material-ui/core/IconButton";
 import PlayArrowIcon from '@material-ui/icons/PlayArrow';
 import ArtistDisplay from "./artistDisplay";
+import Link from "@material-ui/core/Link";
 
 const StyledCardMedia = withStyles({
     img: {
@@ -42,19 +44,26 @@ export class MusicListCard extends React.Component {
     }
 
     render() {
+        const preventDefault = event => event.preventDefault();
+
         return (
             <StyledCard>
                 <div>
                     <StyledCardContent>
                         <Typography component="h5" variant="h5">
-                            {this.props.title}
+                            <Link component={RouterLink} to={`/morceau/${this.props.id}`} style={{ color: 'black'}}>
+                                {this.props.title}
+                            </Link>
                         </Typography>
                         <Typography variant="subtitle1" color="textSecondary">
                             {this.props.album}
                         </Typography>
-                        <Typography variant="subtitle2" color="textSecondary">
-                            <ArtistDisplay artists={this.props.artists}/>
-                        </Typography>
+                        {this.props.artists ? 
+                            <Typography variant="subtitle2" color="textSecondary">
+                                <ArtistDisplay artists={this.props.artists}/>
+                            </Typography>
+                         : null}
+                        
                     </StyledCardContent>
                 </div>
                 <StyledCardMedia

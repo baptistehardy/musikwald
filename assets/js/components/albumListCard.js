@@ -8,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ArtistDisplay from "./artistDisplay";
+import {Link as RouterLink} from "react-router-dom";
+import Link from "@material-ui/core/Link";
 
 const useStyles = makeStyles({
     card: {
@@ -32,11 +34,15 @@ export default function AlbumListCard(props) {
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="h2">
-                        {props.title}
+                        <Link component={RouterLink} to={`/album/${props.id}`} style={{ color: 'black'}}>
+                            {props.title}
+                        </Link>
                     </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                        <ArtistDisplay artists={props.artists}/>
-                    </Typography>
+                    {props.artists ? 
+                        <Typography variant="subtitle1" color="textSecondary">
+                            <ArtistDisplay artists={props.artists}/>
+                        </Typography>
+                         : null}
                     <Typography variant="subtitle2" color="textSecondary">
                         {props.releaseYear}
                     </Typography>

@@ -42,7 +42,7 @@ class Music
 
     /**
      * @ORM\ManyToMany(targetEntity="App\Entity\Genre", inversedBy="musics")
-     * @Groups({"music", "album"})
+     * @Groups({"music", "artist", "album"})
      */
     private $genres;
 
@@ -54,7 +54,7 @@ class Music
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\Label", inversedBy="musics")
-     * @Groups({"music", "album", "genre"})
+     * @Groups({"music", "album", "genre", "artist"})
      */
     private $label;
 
