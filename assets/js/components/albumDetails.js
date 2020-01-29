@@ -65,45 +65,52 @@ export class AlbumDetails extends React.Component {
             );
             return (
                 <div>
-                    <Grid container spacing={2}>
-                        <Grid item>
-                            <img src={this.state.album.musics[0].image} alt={this.state.album.name} style={{
-                                width: 200,
-                                height: 200,
-                                borderRadius: 4,
-                                overflow: "hidden",
-                                borderWidth: 3,
-                            }}/>
-                        </Grid>
-                        <Grid item xs={12} sm container>
-                            <Grid item xs container direction="column" spacing={1}>
-                                <Grid item xs>
-                                    <Typography component="h5" variant="h5">{this.state.album.name}</Typography>
-                                    <Typography variant="subtitle1" color="textSecondary">{this.artists}</Typography>
-                                    <Typography variant="subtitle2" color="textSecondary">{this.state.album.releaseYear}</Typography>
+                    <Grid container direction="row" spacing={2}>
+                        <Grid item xs={12}>
+                            <Grid container spacing={2}>
+                                <Grid item>
+                                    <img src={this.state.album.musics[0].image} alt={this.state.album.name} style={{
+                                        width: 200,
+                                        height: 200,
+                                        borderRadius: 4,
+                                        overflow: "hidden",
+                                        borderWidth: 3,
+                                    }}/>
                                 </Grid>
-                                <Grid item xs>
-                                    <Button
-                                        variant="contained"
-                                        color="secondary"
-                                        startIcon={<DeleteIcon />}
-                                    >
-                                        Supprimer
-                                    </Button>
-                                    &nbsp;
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        startIcon={<EditIcon />}
-                                    >
-                                        Modifier
-                                    </Button>
-                                
+                                <Grid item xs={12} sm container>
+                                    <Grid item xs container direction="column" spacing={1}>
+                                        <Grid item xs>
+                                            <Typography component="h5" variant="h5">{this.state.album.name}</Typography>
+                                            <Typography variant="subtitle1" color="textSecondary">{this.artists}</Typography>
+                                            <Typography variant="subtitle2" color="textSecondary">{this.state.album.releaseYear}</Typography>
+                                        </Grid>
+                                        <Grid item xs>
+                                            <Button
+                                                variant="contained"
+                                                color="secondary"
+                                                startIcon={<DeleteIcon />}
+                                            >
+                                                Supprimer
+                                            </Button>
+                                            &nbsp;
+                                            <Button
+                                                variant="contained"
+                                                color="primary"
+                                                startIcon={<EditIcon />}
+                                            >
+                                                Modifier
+                                            </Button>
+                                        
+                                        </Grid>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>
+                        <Grid item xs={12}>
+                            <div>{this.musics}</div>
+                        </Grid>
                     </Grid>
-                    <div>{this.musics}</div>
+                    
                 </div>
                 // <Typography>{this.state.album.name}</Typography>
             )
