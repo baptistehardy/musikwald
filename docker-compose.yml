@@ -9,10 +9,9 @@ services:
     command: --default-authentication-plugin=mysql_native_password
     restart: always
     environment:
-      MYSQL_USER: ${MYSQL_USER}
+      #MYSQL_USER: ${MYSQL_USER}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_DATABASE: ${MYSQL_DATABASE}
-
     # Permet de stocker les données en cas de rebuild
     volumes:
       - "~/.docker/var/lib/mysql/musikwald:/var/lib/mysql"
@@ -33,10 +32,9 @@ services:
     restart: on-failure
     # Emplacement des fichiers pour apache
     volumes:
-      - nfsmount:/var/www/html/musikwald:delegated
+      - .:/var/www/html/musikwald:delegated
       - vendor:/var/www/html/musikwald/vendor
       - cache:/var/www/html/musikwald/var/cache
-      - node:/var/www/html/musikwald/node_modules
 
     networks:
       musikwald:
@@ -72,10 +70,3 @@ networks:
 volumes:
   vendor:
   cache:
-  node:
-  nfsmount:
-    driver: local
-    driver_opts:
-      type: nfs
-      o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
-      device: ":${MUSIKWALD_PATH}"
