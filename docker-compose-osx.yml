@@ -1,0 +1,61 @@
+version: '3'
+services:
+  db:
+    image: mysql:5.7
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpassword
+      MYSQL_DATABASE: musikwald
+      MYSQL_USER: musikwald
+      MYSQL_PASSWORD: userpassword
+    ports:
+      - 7002:3306
+    networks:
+      musikwald:
+        aliases:
+            - db
+  web:
+    build:
+      context: .
+    ports:
+      - 7000:80
+    depends_on:
+      - db
+    restart: on-failure
+    volumes:
+      - nfsmount:/var/www/html/easyreco:delegated
+      - vendor:/var/www/html/musikwald/vendor
+      - cache:/var/www/html/musikwald/var/cache
+    networks:
+      musikwald:
+        aliases:
+          - web
+  pma:
+    image: phpmyadmin/phpmyadmin:4.9
+    restart: on-failure
+    networks:
+      musikwald:
+        aliases:
+          - pma
+    ports:
+      - 7001:80
+    environment:
+      PMA_HOST: db
+      PMA_ABSOLUTE_URI: http://er.phpmyadmin.local/
+      PMA_USER: root
+      PMA_PASSWORD: rootpassword
+networks:
+  musikwald:
+
+volumes:
+  db_data: {}
+  vendor:
+  cache:
+  nfsmount:
+    driver: local
+    driver_opts:
+      type: nfs
+      o: addr=host.docker.internal,rw,nolock,hard,nointr,nfsvers=3
+      device: ":${MUSIKWALD_PATH}"
