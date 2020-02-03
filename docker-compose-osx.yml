@@ -46,15 +46,6 @@ services:
       PMA_ABSOLUTE_URI: http://er.phpmyadmin.local/
       PMA_USER: root
       PMA_PASSWORD: rootpassword
-  encore:
-    image: node:12-alpine
-    volumes:
-      - .:/app
-    ports:
-      - "${DEV_SERVER_PORT:-8000}:8080"
-    working_dir: /app
-    # Lance automatiquement le serveur yarn pour la compilation
-    command: ["yarn", "dev-server", "--host=0.0.0.0"]
 networks:
   musikwald:
 
