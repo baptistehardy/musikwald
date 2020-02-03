@@ -13,4 +13,5 @@ db:
 install:
 	composer install
 	yarn install
+	php bin/console doctrine:database:create
 	make db
