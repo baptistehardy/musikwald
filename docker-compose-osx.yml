@@ -25,7 +25,7 @@ services:
       - db
     restart: on-failure
     volumes:
-      - nfsmount:/var/www/html/easyreco:delegated
+      - nfsmount:/var/www/html/musikwald:delegated
       - vendor:/var/www/html/musikwald/vendor
       - cache:/var/www/html/musikwald/var/cache
     networks:
