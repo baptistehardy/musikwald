@@ -9,8 +9,9 @@
 - Composer
 - Yarn
 - [Symfony CLI](https://symfony.com/download)
+- Docker && docker-compose
 
-### Installation
+### Installation classique
 
 #### Avec `make`
 
@@ -55,3 +56,14 @@ symfony serve
 <br/>
 
 Le site est alors disponible en [127.0.0.1:8000](http://127.0.0.1:8000).
+
+### Installation avec Docker
+
+- Installation complète du projet 
+
+```bash
+make docker
+```
+
+Le site est alors disponible en [127.0.0.1:8000](http://127.0.0.1:8000).<br />
+L'interface PhpMyAdmin est disponible en [127.0.0.1:7001](http://127.0.0.1:7001)
