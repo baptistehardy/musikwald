@@ -1,37 +1,50 @@
+# Ce fichier contient les configurations des différents containers
 version: '3'
 services:
+  # Contient la base de données, basée sur une image MySQL
   db:
     image: mysql:5.7
+    # Volume permettant de persister les données, entre les rebuild
     volumes:
       - db_data:/var/lib/mysql
+    # Redémarre automatiquement en cas d'erreur
     restart: always
+    # Informations de connexion
     environment:
       MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: musikwald
       MYSQL_USER: musikwald
       MYSQL_PASSWORD: userpassword
+    # Redirige le port 3306 sur le port 7002
     ports:
       - 7002:3306
+    # Porte le nom "db" sur le réseau "musikwald"
     networks:
       musikwald:
         aliases:
             - db
+  # Container web, contenant les fichiers sources
   web:
     build:
       context: .
+    # Redirige le port 80 sur le port 7000
     ports:
       - 7000:80
+    # A besoin de "db" pour être fonctionnel
     depends_on:
       - db
     restart: on-failure
     volumes:
+      # Point de montage NFS, spécifique à OSX
       - nfsmount:/var/www/html/musikwald:delegated
+      # Volumes
       - vendor:/var/www/html/musikwald/vendor
       - cache:/var/www/html/musikwald/var/cache
     networks:
       musikwald:
         aliases:
           - web
+  # Container PhpMyAdmin
   pma:
     image: phpmyadmin/phpmyadmin:4.9
     restart: on-failure
@@ -39,6 +52,7 @@ services:
       musikwald:
         aliases:
           - pma
+    # Redirige le port 80 sur le port 7001
     ports:
       - 7001:80
     environment:
@@ -53,6 +67,7 @@ volumes:
   db_data: {}
   vendor:
   cache:
+  # Point de montage NFS, améliore grandement les performanes sur OSX
   nfsmount:
     driver: local
     driver_opts:
