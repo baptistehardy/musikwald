@@ -10,12 +10,7 @@ EXPOSE 80
 
 # Installation de libirairies nécessaires
 RUN apt-get update -y -qq && \
-    apt-get install -qq -y zip unzip wget git vim zlib1g-dev libmemcached-dev \
-    mailutils libpng-dev libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev \
-    libfreetype6-dev dmtx-utils
-
-# Configuration de MySQL par défaut pour se connecter automatiquement
-# RUN echo "\n\n[mysql]\nhost=db\nuser=root\npassword=u4HV3iiiwRf5GKwyBFDGQ\ndatabase=musikwald" >> /etc/mysql/my.cnf
+    apt-get install -qq -y zip unzip wget git vim dmtx-utils
 
 # Installe Composer
 RUN mkdir -p /root/bin/
